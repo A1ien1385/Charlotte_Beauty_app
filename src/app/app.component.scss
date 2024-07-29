@@ -1,0 +1,25 @@
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    height: 60px; /* Możesz dostosować wysokość */
+
+    .image_logo_container 
+    {
+        height: 100%;
+        min-width: 100px;
+
+        .image_logo
+        {
+            height: 100%;
+            width: auto;
+            background-image: url('./pictures/logo_nobg.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+}
+
