@@ -1,6 +1,21 @@
-<mat-toolbar class="nav">
-  <h1>Charlotte Beauty App</h1>
-  <div class="image_logo_container"> <!-- Rodzic z wysokością toolbara -->
-    <div class="image_logo"></div>
-  </div>
-</mat-toolbar>
+
+
+<mat-sidenav-container class="side-nav">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+       <a class="sidenav_text" href="">Kalendarz</a> 
+    </mat-sidenav>
+    <mat-sidenav-content> 
+
+      <mat-toolbar class="nav">
+        <button style="background-color: black; border: 0;" (click)="sidenav.toggle()">
+          <mat-icon style="color: white; cursor: pointer;">menu</mat-icon>
+      </button>
+        <h1>Charlotte Beauty App</h1>
+        <div class="image_logo_container"> <!-- Rodzic z wysokością toolbara -->
+          <div class="image_logo"></div>
+        </div>
+      </mat-toolbar>
+
+      <h2 style="color: black;">Article title</h2>
+    </mat-sidenav-content>
+</mat-sidenav-container>
