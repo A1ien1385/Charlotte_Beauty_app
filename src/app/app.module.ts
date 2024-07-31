@@ -1,30 +1,32 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import {MaterialModule} from './material/material.module';
 import { CalendarComponent } from './calendar/calendar.component';
+import { CmsComponent } from './cms/cms.component';
 import { NotesComponent } from './notes/notes.component';
-import { CmsComponent } from './cms/cms.component';;
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
     AppComponent,
     CalendarComponent,
-    NotesComponent,
-    CmsComponent
+    CmsComponent,
+    NotesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
