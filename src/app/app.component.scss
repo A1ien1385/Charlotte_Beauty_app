@@ -40,10 +40,18 @@ mat-sidenav {
     width: 200px;
     padding: 16px;
     border-radius: 0;
+    
 }
 
 .sidenav_text 
 {
     color: white;
     text-decoration: none;
+}
+
+.mat-drawer-inner-container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
