@@ -25,7 +25,6 @@
 
 .side-nav
 {
-    
     color: white;
 }
 
@@ -36,11 +35,21 @@ mat-sidenav-container {
 
 
 mat-sidenav {
-    background-color: black;
+    background-color: rgb(0, 0, 0);
     width: 200px;
     padding: 16px;
     border-radius: 0;
     
+}
+
+.sidenav_el
+{
+    cursor: pointer;
+}
+
+.sidenav_el:hover
+{
+    background-color: rgba(255, 255, 255, 0.4)
 }
 
 .sidenav_text 

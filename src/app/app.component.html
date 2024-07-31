@@ -2,14 +2,14 @@
 
 <mat-sidenav-container class="side-nav">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
-      <div>
-       <a class="sidenav_text" routerLink="/calendar">Kalendarz</a> 
+      <div class="sidenav_el" routerLink="/calendar">
+       <a class="sidenav_text">Kalendarz</a> 
       </div>
-      <div>
-       <a class="sidenav_text" routerLink="/notes">Notatki</a> 
+      <div class="sidenav_el" routerLink="/notes">
+       <a class="sidenav_text">Notatki</a> 
       </div>
-      <div>
-        <a class="sidenav_text" routerLink="/cms">CMS</a> 
+      <div class="sidenav_el" routerLink="/cms">
+        <a class="sidenav_text">CMS</a> 
        </div>
     </mat-sidenav>
     <mat-sidenav-content> 
@@ -23,8 +23,6 @@
           <div class="image_logo"></div>
         </div>
       </mat-toolbar>
-
-      <h2 style="color: black;">Article title</h2>
       <router-outlet></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
