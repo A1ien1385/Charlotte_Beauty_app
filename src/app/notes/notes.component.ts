@@ -35,6 +35,7 @@ export class NotesComponent implements OnInit {
       this.http.post('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json', formData)
         .subscribe(response => {
           console.log('Data saved successfully!', response);
+          this.form.reset();
         }, error => {
           console.error('Error saving data', error);
         });
