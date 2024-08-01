@@ -21,6 +21,7 @@ export class NotesComponent {
 
   ngOnInit() {
     this.fetchPosts();
+    // 
   }
 
   onSubmit() {
