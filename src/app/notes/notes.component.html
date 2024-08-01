@@ -1,38 +1,36 @@
 <div class="form-container">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-      <h3>Dodaj notatkę</h3>
-      <mat-form-field appearance="fill">
-        <mat-label>Imię i nazwisko klientki</mat-label>
-        <input matInput formControlName="clientName" required>
-      </mat-form-field>
-      
-      <mat-form-field appearance="fill">
-        <mat-label>Godzina</mat-label>
-        <mat-select formControlName="appointmentTime" required>
-          <mat-option value="8:00">8:00</mat-option>
-          <mat-option value="9:00">9:00</mat-option>
-          <mat-option value="10:00">10:00</mat-option>
-          <mat-option value="11:00">11:00</mat-option>
-          <mat-option value="12:00">12:00</mat-option>
-          <mat-option value="13:00">13:00</mat-option>
-          <mat-option value="14:00">14:00</mat-option>
-          <mat-option value="15:00">15:00</mat-option>
-          <mat-option value="16:00">16:00</mat-option>
-          <mat-option value="17:00">17:00</mat-option>
-          <mat-option value="18:00">18:00</mat-option>
-          <mat-option value="19:00">19:00</mat-option>
-          <mat-option value="20:00">20:00</mat-option>
-        </mat-select>
-      </mat-form-field>
-      
-      <mat-form-field appearance="fill">
-        <mat-label>Uwagi</mat-label>
-        <textarea matInput formControlName="notes"></textarea>
-      </mat-form-field>
-      
-      <button mat-flat-button type="submit">Zatwierdź</button>
-    </form>
-    <button mat-flat-button (click)="onFetchPosts()">Pobierz zasoby</button>
-
-  </div>
-  
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+    <h3>Dodaj notatkę</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Imię i nazwisko klientki</mat-label>
+      <input matInput formControlName="clientName" required>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Godzina</mat-label>
+      <mat-select formControlName="appointmentTime" required>
+        <mat-option value="8">8:00</mat-option>
+        <mat-option value="9">9:00</mat-option>
+        <mat-option value="10">10:00</mat-option>
+        <mat-option value="11">11:00</mat-option>
+        <mat-option value="12">12:00</mat-option>
+        <mat-option value="13">13:00</mat-option>
+        <mat-option value="14">14:00</mat-option>
+        <mat-option value="15">15:00</mat-option>
+        <mat-option value="16">16:00</mat-option>
+        <mat-option value="17">17:00</mat-option>
+        <mat-option value="18">18:00</mat-option>
+        <mat-option value="19">19:00</mat-option>
+        <mat-option value="20">20:00</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Uwagi</mat-label>
+      <textarea matInput formControlName="notes"></textarea>
+    </mat-form-field>
+    
+    <button mat-flat-button type="submit">Zatwierdź</button>
+  </form>
+  <button mat-flat-button (click)="onFetchPosts()">Pobierz zasoby</button>
+</div>
