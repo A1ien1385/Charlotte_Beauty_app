@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-notes',
   templateUrl: './notes.component.html',
-  styleUrl: './notes.component.scss'
+  styleUrls: ['./notes.component.scss']
 })
 export class NotesComponent {
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private http: HttpClient, private fb: FormBuilder) {
     this.form = this.fb.group({
       clientName: [''],
       appointmentTime: [''],
@@ -19,8 +20,16 @@ export class NotesComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      console.log('Form Submitted!', this.form.value);
-      // You can handle form submission here
+      const formData = this.form.value;
+      console.log('Form Submitted!', formData);
+      
+      this.http.post('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json', formData)
+        .subscribe(response => {
+          console.log('Data saved successfully!', response);
+        }, error => {
+          console.error('Error saving data', error);
+        });
     }
   }
 }
+
