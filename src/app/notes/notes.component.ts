@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-notes',
@@ -44,7 +45,18 @@ export class NotesComponent {
 
 
   private fetchPosts() {
-    this.http.get('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json').subscribe(posts => {
+    this.http.get<Record<string, any>>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json')
+    .pipe(map(responseData => {
+      const postsArray = [];
+      for (const key in responseData) {
+        if (responseData.hasOwnProperty(key))
+        {
+          postsArray.push({...responseData[key], id: key});
+        }
+      }
+      return postsArray;
+    }))
+    .subscribe(posts => {
       console.log(posts);
     })
   }
