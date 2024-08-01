@@ -1,12 +1,12 @@
 <div class="form-container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
     <h3>Dodaj notatkę</h3>
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="input-field input-field-1">
       <mat-label>Imię i nazwisko klientki</mat-label>
       <input matInput formControlName="clientName" required>
     </mat-form-field>
     
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="input-field input-field-2">
       <mat-label>Godzina</mat-label>
       <mat-select formControlName="appointmentTime" required>
         <mat-option value="8">8:00</mat-option>
@@ -25,12 +25,33 @@
       </mat-select>
     </mat-form-field>
     
-    <mat-form-field appearance="fill">
+    <mat-form-field class="textarea-field" appearance="fill">
       <mat-label>Uwagi</mat-label>
       <textarea matInput formControlName="notes"></textarea>
     </mat-form-field>
     
+    <div>
     <button mat-flat-button type="submit">Zatwierdź</button>
+    <button mat-flat-button (click)="onFetchPosts()">Odśwież</button>
+    </div>
+    
   </form>
-  <button mat-flat-button (click)="onFetchPosts()">Pobierz zasoby</button>
+  
 </div>
+
+<div class="row">
+  <div class="row_cols">
+      <p *ngIf="loadedPosts.length < 1">No posts available!</p>
+      <ul class="list-group" *ngIf="loadedPosts.length >= 1">
+        <li class="list-group-item" *ngFor="let post of loadedPosts">
+          <h5>{{post.clientName}}</h5>
+          <p>{{post.appointmentTime}}</p>
+          <p>{{post.notes}}</p>
+        </li>
+      </ul>
+  </div>
+</div>
+
+<!-- clientName: string, 
+    appointmentTime: number, 
+    notes: string,  -->
