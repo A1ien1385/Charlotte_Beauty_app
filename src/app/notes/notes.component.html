@@ -1,5 +1,6 @@
 <div class="form-container">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <h3>Dodaj notatkę</h3>
       <mat-form-field appearance="fill">
         <mat-label>Imię i nazwisko klientki</mat-label>
         <input matInput formControlName="clientName" required>
@@ -31,5 +32,7 @@
       
       <button mat-flat-button type="submit">Zatwierdź</button>
     </form>
+    <button mat-flat-button (click)="onFetchPosts()">Pobierz zasoby</button>
+
   </div>
   

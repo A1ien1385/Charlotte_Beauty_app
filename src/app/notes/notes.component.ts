@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NotesComponent {
   form: FormGroup;
+  loadedPosts = [];
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -16,6 +17,10 @@ export class NotesComponent {
       appointmentTime: [''],
       notes: ['']
     });
+  }
+
+  ngOnInit() {
+    this.fetchPosts();
   }
 
   onSubmit() {
@@ -30,6 +35,17 @@ export class NotesComponent {
           console.error('Error saving data', error);
         });
     }
+  }
+
+  onFetchPosts() {
+    this.fetchPosts();
+  }
+
+
+  private fetchPosts() {
+    this.http.get('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json').subscribe(posts => {
+      console.log(posts);
+    })
   }
 }
 
