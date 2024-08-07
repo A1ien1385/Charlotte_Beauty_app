@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { NotesService } from '../notes.service';
 import { Post } from '../post.model';
 
 @Component({
@@ -14,7 +13,7 @@ export class NotesComponent implements OnInit {
   loadedPosts: Post[] = [];
   isFetching = false;
 
-  constructor(private http: HttpClient, private fb: FormBuilder) {
+  constructor(private notesService: NotesService, private fb: FormBuilder) {
     this.form = this.fb.group({
       clientName: [''],
       appointmentTime: [''],
@@ -33,16 +32,15 @@ export class NotesComponent implements OnInit {
 
       console.log('Form Submitted!', formData);
       
-      this.http.post<{ name: string }>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json', formData)
-        .subscribe(response => {
-          console.log('Data saved successfully!', response);
-          // Add the new post to the loadedPosts array
-          this.loadedPosts.push({ ...formData, id: response.name });
-          // Clear the form
-          this.form.reset();
-        }, error => {
-          console.error('Error saving data', error);
-        });
+      this.notesService.addPost(formData).subscribe(response => {
+        console.log('Data saved successfully!', response);
+        // Add the new post to the loadedPosts array
+        this.loadedPosts.push({ ...formData, id: response.name });
+        // Clear the form
+        this.form.reset();
+      }, error => {
+        console.error('Error saving data', error);
+      });
     }
   }
 
@@ -52,24 +50,28 @@ export class NotesComponent implements OnInit {
 
   private fetchPosts() {
     this.isFetching = true;
-    this.http.get<{ [key: string]: Post }>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json')
-      .pipe(map(responseData => {
-        const postsArray: Post[] = [];
-        for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
-            postsArray.push({ ...responseData[key], id: key });
-          }
-        }
-        return postsArray;
-      }))
-      .subscribe(posts => {
-        this.isFetching = false;
-        this.loadedPosts = posts;
-        console.log(posts);
-      });
+    this.notesService.fetchPosts().subscribe(posts => {
+      this.isFetching = false;
+      this.loadedPosts = posts;
+      console.log(posts);
+    }, error => {
+      this.isFetching = false;
+      console.error('Error fetching data', error);
+    });
   }
 
   onClearPosts() {
     // Implement functionality to clear posts if needed
+    this.notesService.deletePosts().subscribe(() => {
+      this.loadedPosts = [];
+    });
+  }
+
+  deletePost(id: string) {
+    this.notesService.deletePost(id).subscribe(() => {
+      this.loadedPosts = this.loadedPosts.filter(post => post.id !== id);
+    }, error => {
+      console.error('Error deleting post', error);
+    });
   }
 }

@@ -182,4 +182,19 @@
     margin-right: 5px;
   }
 
+ .warn 
+ {
+  color: red;
+  font-weight: bold;
+  border: 0;
+  background-color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-left: -15px;
  
+ }
+
+ .warn:hover
+ {
+  background-color: rgba(237, 19, 19, 0.4);
+ }

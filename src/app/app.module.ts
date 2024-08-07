@@ -15,6 +15,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     ReactiveFormsModule,
     MatButtonModule,
     HttpClientModule,
-    
+    MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

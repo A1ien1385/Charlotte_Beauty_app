@@ -24,6 +24,8 @@
         <mat-option value="20">20:00</mat-option>
       </mat-select>
     </mat-form-field>
+
+    
     
     <mat-form-field class="textarea-field" appearance="fill">
       <mat-label>Treść</mat-label>
@@ -33,7 +35,7 @@
     <div>
     <button mat-flat-button type="submit">Zatwierdź</button>
     <button mat-flat-button (click)="onFetchPosts()">Odśwież</button>
-    <button mat-stroked-button (click)="onClearPosts()">Usuń notatkę</button>
+    <button mat-raised-button (click)="onClearPosts()">Wyczyść notatnik</button>
     </div>
     
   </form>
@@ -48,6 +50,7 @@
           <h5>{{post.clientName}}</h5>
           <p>{{post.appointmentTime}}</p>
           <p>{{post.notes}}</p>
+          <button class="warn" (click)="deletePost(post.id)">Usuń notatkę</button>
         </li>
       </ul>
       <p *ngIf="isFetching">Loading...</p>
