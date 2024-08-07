@@ -17,7 +17,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
+import { registerLocaleData } from '@angular/common';
+import localePl from '@angular/common/locales/pl';
 
+registerLocaleData(localePl);
 
 @NgModule({
   declarations: [

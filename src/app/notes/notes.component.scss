@@ -182,19 +182,26 @@
     margin-right: 5px;
   }
 
+.title_box
+{
+  display: flex;
+  justify-content: space-between;
+}
+
  .warn 
  {
-  color: red;
-  font-weight: bold;
   border: 0;
-  background-color: white;
   cursor: pointer;
-  margin-top: 10px;
-  margin-left: -15px;
- 
  }
 
- .warn:hover
+ .high_prior 
  {
-  background-color: rgba(237, 19, 19, 0.4);
+  border-color: red !important;
+  background-color: rgba(235, 13, 13, 0.2);
+ }
+
+ .priority-label
+ {
+  color: red !important;
+  border-bottom: 1px solid red;
  }

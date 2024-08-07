@@ -9,27 +9,47 @@
     <mat-form-field appearance="fill" class="input-field input-field-2">
       <mat-label>Godzina</mat-label>
       <mat-select formControlName="appointmentTime" required>
-        <mat-option value="8">8:00</mat-option>
-        <mat-option value="9">9:00</mat-option>
-        <mat-option value="10">10:00</mat-option>
-        <mat-option value="11">11:00</mat-option>
-        <mat-option value="12">12:00</mat-option>
-        <mat-option value="13">13:00</mat-option>
-        <mat-option value="14">14:00</mat-option>
-        <mat-option value="15">15:00</mat-option>
-        <mat-option value="16">16:00</mat-option>
-        <mat-option value="17">17:00</mat-option>
-        <mat-option value="18">18:00</mat-option>
-        <mat-option value="19">19:00</mat-option>
-        <mat-option value="20">20:00</mat-option>
+        <mat-option value="08:00">08:00</mat-option>
+        <mat-option value="08:30">08:30</mat-option>
+        <mat-option value="09:00">09:00</mat-option>
+        <mat-option value="09:30">09:30</mat-option>
+        <mat-option value="10:00">10:00</mat-option>
+        <mat-option value="10:30">10:30</mat-option>
+        <mat-option value="11:00">11:00</mat-option>
+        <mat-option value="11:30">11:30</mat-option>
+        <mat-option value="12:00">12:00</mat-option>
+        <mat-option value="12:30">12:30</mat-option>
+        <mat-option value="13:00">13:00</mat-option>
+        <mat-option value="13:30">13:30</mat-option>
+        <mat-option value="14:00">14:00</mat-option>
+        <mat-option value="14:30">14:30</mat-option>
+        <mat-option value="15:00">15:00</mat-option>
+        <mat-option value="15:30">15:30</mat-option>
+        <mat-option value="16:00">16:00</mat-option>
+        <mat-option value="16:30">16:30</mat-option>
+        <mat-option value="17:00">17:00</mat-option>
+        <mat-option value="17:30">17:30</mat-option>
+        <mat-option value="18:00">18:00</mat-option>
+        <mat-option value="18:30">18:30</mat-option>
+        <mat-option value="19:00">19:00</mat-option>
+        <mat-option value="19:30">19:30</mat-option>
+        <mat-option value="20:00">20:00</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field style="margin-right: 15px;">
       <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="myDatePicker" formControlName="data">
+      <input matInput [matDatepicker]="myDatePicker" formControlName="data" required>
       <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #myDatePicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-field input-field-2">
+      <mat-label>Priorytet?</mat-label>
+      <mat-select formControlName="prior" required>
+        <mat-option value="Tak">Tak</mat-option>
+        <mat-option value="Nie">Nie</mat-option>
+      </mat-select>
     </mat-form-field>
     
     <mat-form-field class="textarea-field" appearance="fill">
@@ -49,16 +69,19 @@
 
 <div class="row">
   <div class="row_cols">
-      <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available!</p>
-      <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
-        <li class="list-group-item" *ngFor="let post of loadedPosts">
+    <p *ngIf="loadedPosts.length < 1 && !isFetching">Brak notatek!</p>
+    <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
+      <li *ngFor="let post of loadedPosts" [ngClass]="{'high_prior': post.prior === 'Tak'}" class="list-group-item">
+        <div *ngIf="post.prior === 'Tak'" class="priority-label">Wysoka ważność!</div>
+        <div class="title_box">
           <h5>{{post.clientName}}</h5>
-          <p>{{post.data | date}} | {{post.appointmentTime}}</p>
-          <p>{{post.notes}}</p>
-          <button class="warn" (click)="deletePost(post.id)">Usuń notatkę</button>
-        </li>
-      </ul>
-      <p *ngIf="isFetching">Loading...</p>
+          <mat-icon class="warn" (click)="deletePost(post.id)">close</mat-icon>
+        </div>
+        <p>{{ post.data | date: 'fullDate':'':'pl' }} | Godzina: {{post.appointmentTime}}</p>
+        <p>{{post.notes}}</p>
+      </li>
+    </ul>
+    <p *ngIf="isFetching">Loading...</p>
   </div>
 </div>
 
