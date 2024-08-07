@@ -1,6 +1,7 @@
 export interface Post { 
     clientName: string, 
-    appointmentTime: number, 
+    appointmentTime: any, 
+    data: any,
     notes: string, 
     id?: any
 }

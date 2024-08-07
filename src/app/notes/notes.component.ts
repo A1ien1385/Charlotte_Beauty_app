@@ -17,6 +17,7 @@ export class NotesComponent implements OnInit {
     this.form = this.fb.group({
       clientName: [''],
       appointmentTime: [''],
+      data: [''],
       notes: ['']
     });
   }
@@ -27,7 +28,8 @@ export class NotesComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
-      const formData = this.form.value;
+      
+      const formData = { ...this.form.value, data: this.form.value.data.toISOString() }; // Konwertuj datę na ISO string
       formData.appointmentTime = +formData.appointmentTime; // Ensure the time is a number
 
       console.log('Form Submitted!', formData);

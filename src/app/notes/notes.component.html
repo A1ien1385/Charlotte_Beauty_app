@@ -25,7 +25,12 @@
       </mat-select>
     </mat-form-field>
 
-    
+    <mat-form-field>
+      <mat-label>Data</mat-label>
+      <input matInput [matDatepicker]="myDatePicker" formControlName="data">
+      <mat-datepicker-toggle [for]="myDatePicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatePicker></mat-datepicker>
+    </mat-form-field>
     
     <mat-form-field class="textarea-field" appearance="fill">
       <mat-label>Treść</mat-label>
@@ -48,7 +53,7 @@
       <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
         <li class="list-group-item" *ngFor="let post of loadedPosts">
           <h5>{{post.clientName}}</h5>
-          <p>{{post.appointmentTime}}</p>
+          <p>{{post.data | date}} | {{post.appointmentTime}}</p>
           <p>{{post.notes}}</p>
           <button class="warn" (click)="deletePost(post.id)">Usuń notatkę</button>
         </li>
