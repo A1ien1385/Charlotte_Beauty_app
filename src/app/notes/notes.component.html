@@ -72,7 +72,7 @@
     <p *ngIf="loadedPosts.length < 1 && !isFetching">Brak notatek!</p>
     <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
       <li *ngFor="let post of loadedPosts" [ngClass]="{'high_prior': post.prior === 'Tak'}" class="list-group-item">
-        <div *ngIf="post.prior === 'Tak'" class="priority-label">Wysoka ważność!</div>
+        <div *ngIf="post.prior === 'Tak'" class="priority-label">Priorytet!</div>
         <div class="title_box">
           <h5>{{post.clientName}}</h5>
           <mat-icon class="warn" (click)="deletePost(post.id)">close</mat-icon>

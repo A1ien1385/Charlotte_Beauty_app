@@ -41,8 +41,7 @@ export class NotesComponent implements OnInit {
         console.log('Data saved successfully!', response);
         // Add the new post to the loadedPosts array
         this.loadedPosts.push({ ...formData, id: response.name });
-        //sort by date
-        this.sortPostsByDateAndTime();
+        
         // Clear the form
         this.form.reset();
       }, error => {
@@ -82,20 +81,5 @@ export class NotesComponent implements OnInit {
     });
   }
 
-  private sortPostsByDateAndTime() {
-    this.loadedPosts.sort((a, b) => {
-      const dateA = new Date(a.data);
-      const dateB = new Date(b.data);
-      const timeA = a.appointmentTime.split(':').map(Number);
-      const timeB = b.appointmentTime.split(':').map(Number);
-
-      const dateComparison = dateA.getTime() - dateB.getTime();
-      if (dateComparison !== 0) {
-        return dateComparison;
-      }
-
-      const timeComparison = (timeA[0] - timeB[0]) || (timeA[1] - timeB[1]);
-      return timeComparison;
-    });
-  }
+  
 }
