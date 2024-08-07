@@ -12,6 +12,7 @@ import { Post } from '../post.model';
 export class NotesComponent implements OnInit {
   form: FormGroup;
   loadedPosts: Post[] = [];
+  isFetching = false;
 
   constructor(private http: HttpClient, private fb: FormBuilder) {
     this.form = this.fb.group({
@@ -32,9 +33,12 @@ export class NotesComponent implements OnInit {
 
       console.log('Form Submitted!', formData);
       
-      this.http.post('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json', formData)
+      this.http.post<{ name: string }>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json', formData)
         .subscribe(response => {
           console.log('Data saved successfully!', response);
+          // Add the new post to the loadedPosts array
+          this.loadedPosts.push({ ...formData, id: response.name });
+          // Clear the form
           this.form.reset();
         }, error => {
           console.error('Error saving data', error);
@@ -47,7 +51,8 @@ export class NotesComponent implements OnInit {
   }
 
   private fetchPosts() {
-    this.http.get<{[key: string]: Post}>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json')
+    this.isFetching = true;
+    this.http.get<{ [key: string]: Post }>('https://charlottebeautyapp-default-rtdb.europe-west1.firebasedatabase.app/data.json')
       .pipe(map(responseData => {
         const postsArray: Post[] = [];
         for (const key in responseData) {
@@ -58,8 +63,13 @@ export class NotesComponent implements OnInit {
         return postsArray;
       }))
       .subscribe(posts => {
+        this.isFetching = false;
         this.loadedPosts = posts;
         console.log(posts);
       });
+  }
+
+  onClearPosts() {
+    // Implement functionality to clear posts if needed
   }
 }

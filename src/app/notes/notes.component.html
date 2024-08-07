@@ -2,7 +2,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
     <h3>Dodaj notatkę</h3>
     <mat-form-field appearance="fill" class="input-field input-field-1">
-      <mat-label>Imię i nazwisko klientki</mat-label>
+      <mat-label>Tytuł notatki</mat-label>
       <input matInput formControlName="clientName" required>
     </mat-form-field>
     
@@ -26,13 +26,14 @@
     </mat-form-field>
     
     <mat-form-field class="textarea-field" appearance="fill">
-      <mat-label>Uwagi</mat-label>
+      <mat-label>Treść</mat-label>
       <textarea matInput formControlName="notes"></textarea>
     </mat-form-field>
     
     <div>
     <button mat-flat-button type="submit">Zatwierdź</button>
     <button mat-flat-button (click)="onFetchPosts()">Odśwież</button>
+    <button mat-stroked-button (click)="onClearPosts()">Usuń notatkę</button>
     </div>
     
   </form>
@@ -41,14 +42,15 @@
 
 <div class="row">
   <div class="row_cols">
-      <p *ngIf="loadedPosts.length < 1">No posts available!</p>
-      <ul class="list-group" *ngIf="loadedPosts.length >= 1">
+      <p *ngIf="loadedPosts.length < 1 && !isFetching">No posts available!</p>
+      <ul class="list-group" *ngIf="loadedPosts.length >= 1 && !isFetching">
         <li class="list-group-item" *ngFor="let post of loadedPosts">
           <h5>{{post.clientName}}</h5>
           <p>{{post.appointmentTime}}</p>
           <p>{{post.notes}}</p>
         </li>
       </ul>
+      <p *ngIf="isFetching">Loading...</p>
   </div>
 </div>
 
