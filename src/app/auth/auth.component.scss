@@ -1,0 +1,81 @@
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$background-color: #f2f2f2;
+$border-radius: 5px;
+$input-padding: 12px 15px;
+$input-border: 1px solid #ccc;
+$input-focus-border: 1px solid $primary-color;
+$input-margin-bottom: 20px;
+$transition: all 0.3s ease;
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  padding: 0 20px;
+}
+
+.form-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: $border-radius;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  
+  @media (max-width: 576px) {
+    padding: 20px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    .form-group {
+      margin-bottom: $input-margin-bottom;
+
+      label {
+        margin-bottom: 5px;
+        font-weight: bold;
+        color: $primary-color;
+      }
+
+      .form-control {
+        padding: $input-padding;
+        border: $input-border;
+        border-radius: $border-radius;
+        font-size: 16px;
+        transition: $transition;
+
+        &:focus {
+          border: $input-focus-border;
+          outline: none;
+          box-shadow: 0 0 5px rgba($primary-color, 0.5);
+        }
+      }
+    }
+
+    .btn {
+      background: $primary-color;
+      color: #fff;
+      padding: 12px;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-size: 16px;
+      transition: $transition;
+
+      &.btn-primary {
+        &:hover {
+          background: $secondary-color;
+        }
+      }
+    }
+  }
+}

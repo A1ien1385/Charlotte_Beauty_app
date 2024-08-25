@@ -2,6 +2,9 @@
 
 <mat-sidenav-container class="side-nav">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+      <div class="sidenav_el" routerLink="/auth">
+        <a class="sidenav_text">Wyloguj</a> 
+      </div>
       <div class="sidenav_el" routerLink="/calendar">
        <a class="sidenav_text">Kalendarz</a> 
       </div>

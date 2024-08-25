@@ -19,6 +19,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {provideNativeDateAdapter} from '@angular/material/core';
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import { AuthComponent } from './auth/auth.component';
+import { FormsModule } from '@angular/forms'; 
 
 registerLocaleData(localePl);
 
@@ -27,7 +29,8 @@ registerLocaleData(localePl);
     AppComponent,
     CalendarComponent,
     CmsComponent,
-    NotesComponent
+    NotesComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,7 @@ registerLocaleData(localePl);
     MatButtonModule,
     HttpClientModule,
     MatDatepickerModule,
-    
+    FormsModule
   ],
   providers: [provideNativeDateAdapter()],
   bootstrap: [AppComponent]
