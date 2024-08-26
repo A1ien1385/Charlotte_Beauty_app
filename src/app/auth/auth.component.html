@@ -1,31 +1,64 @@
 <div class="row">
   <div class="form-container">
     <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)">
-        <div class="form-group">
-            <label for="email" class="email"></label>
-            <input 
-            type="email" 
-            id="email" 
-            class="form-control email"
-            ngModel
+        <!-- Pole PIN -->
+        <div class="form-group" *ngIf="!pinIsValid">
+          <label for="pin" class="pin">Aby przejść dalej wpisz PIN</label>
+          <input
+            type="password"  
+            id="pin"
+            name="pin" 
+            class="form-control pin"
+            [(ngModel)]="enteredPin"
+            (ngModelChange)="checkPin()" 
             required
-            email>
+            minlength="4"
+            maxlength="4"
+            pattern="[0-9]{4}">
         </div>
-        <div class="form-group">
-            <label for="password" class="password"></label>
+
+        <!-- Pole Email i Hasło widoczne tylko wtedy, gdy PIN jest poprawny -->
+        <div *ngIf="pinIsValid">
+          <div class="form-group">
+            <label for="email" class="email">Email:</label>
             <input 
-            type="password" 
-            id="password" 
-            class="form-control password"
-            ngModel
-            required
-            minlength="6">
-        </div>
-        <div>
+              type="email" 
+              id="email" 
+              class="form-control email"
+              ngModel
+              required
+              email
+              name="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="password">Hasło:</label>
+            <input 
+              type="password" 
+              id="password" 
+              class="form-control password"
+              ngModel
+              required
+              minlength="6"
+              name="password">
+          </div>
+
+          <!-- Przyciski -->
+          <div>
             <button 
-            class="btn btn-primary"
-            type="submit"
-            [disabled]="!authForm.valid">Login</button>
+              class="btn btn-primary"
+              type="submit"
+              [disabled]="!authForm.valid"> <!-- Zablokowany, jeśli formularz jest niepoprawny -->
+              {{isLoginMode ? 'Zaloguj się' : 'Zarejestruj się'}}
+            </button>
+
+            <button
+              type="button"
+              class="btn-secondary"
+              (click)="onSwitchMode()">
+              Zmień
+            </button>
+          </div>
         </div>
     </form>
   </div>
