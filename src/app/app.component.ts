@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'charlotte_beauty_app';
-  opened = true;
+  opened = false;
   
 }
