@@ -21,6 +21,7 @@ import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
 import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms'; 
+import { LoadingSpinnerComponent } from './shared/loading-spinner.component';
 
 registerLocaleData(localePl);
 
@@ -30,7 +31,8 @@ registerLocaleData(localePl);
     CalendarComponent,
     CmsComponent,
     NotesComponent,
-    AuthComponent
+    AuthComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
