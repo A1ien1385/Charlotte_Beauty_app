@@ -37,9 +37,9 @@ export class AuthComponent {
     this.authService.signUp(email, password).subscribe(
       resData => {
       console.log(resData);
-     }, error => {
-      console.log(error);
-      this.error = 'An error occurred!';
+     }, errorRMessage => {
+      console.log(errorRMessage);
+      this.error = errorRMessage;
       this.isLoading = false;
      });
 

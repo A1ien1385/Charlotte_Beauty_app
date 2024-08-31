@@ -92,3 +92,7 @@ body {
     }
   }
 }
+.disabled {
+  opacity: 0.5;
+  pointer-events: none; /* Opcjonalne: uniemożliwia interakcje z przyciskiem */
+}
